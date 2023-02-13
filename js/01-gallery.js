@@ -6,13 +6,6 @@ galleryList.insertAdjacentHTML("beforeend", createGalleryMarkup());
 
 galleryList.addEventListener("click", onGallaryItemClick);
 
-// const onCloseGallaryKeydown = document.addEventListener("keydown", () => {
-//   if (!event.which === 27) {
-//     return;
-//   }
-//   instance.close();
-// });
-
 function createGalleryMarkup() {
   return galleryItems
     .map(({ preview, original, description }) => {
