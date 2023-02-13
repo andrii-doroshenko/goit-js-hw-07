@@ -37,9 +37,13 @@ function onGallaryItemClick(event) {
 
   instance.show();
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      instance.close();
-    }
-  });
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key === "Escape") {
+        instance.close();
+      }
+    },
+    { once: true }
+  );
 }
