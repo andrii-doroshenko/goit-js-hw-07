@@ -31,19 +31,18 @@ function onGallaryItemClick(event) {
   if (!isGalleryLink) {
     return;
   }
+
   const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="1280" height="1280">
 `);
 
   instance.show();
 
-  document.addEventListener(
-    "keydown",
-    (event) => {
-      if (event.key === "Escape") {
-        instance.close();
-      }
-    },
-    { once: true }
-  );
+  window.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      instance.close(() => {
+        window.removeEventListener("keydown", event);
+      });
+    }
+  });
 }
