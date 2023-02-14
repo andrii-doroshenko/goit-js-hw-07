@@ -47,6 +47,8 @@ function onGallaryItemClick(event) {
   instance.show();
 
   function onGalleryClose(event) {
-    event.code !== "Escape" ? onGalleryClose : instance.close();
+    if (event.code === "Escape") {
+      instance.close();
+    }
   }
 }
