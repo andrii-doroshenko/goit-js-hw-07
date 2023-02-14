@@ -32,17 +32,21 @@ function onGallaryItemClick(event) {
     return;
   }
 
-  const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="1280" height="1280">
-`);
+  const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}" width="1280" height="1280">`,
+    {
+      onShow: () => {
+        window.addEventListener("keydown", onGalleryClose);
+      },
+      onClose: () => {
+        window.removeEventListener("keydown", onGalleryClose);
+      },
+    }
+  );
 
   instance.show();
 
-  window.addEventListener("keydown", (event) => {
-    if (event.code === "Escape") {
-      instance.close(() => {
-        window.removeEventListener("keydown", event);
-      });
-    }
-  });
+  function onGalleryClose(event) {
+    event.code !== "Escape" ? onGalleryClose : instance.close();
+  }
 }
